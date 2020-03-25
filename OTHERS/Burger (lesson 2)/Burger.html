@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        form {
+            width: 400px
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="">Составь свой бургер.</div>
+    <form action="#" id="uForm">
+        <fieldset>
+            <label>
+                Выберите размер бургера:
+                <br>
+                <br>
+                <input type="radio" name="size" data-cost="100" data-cal="40"> Большой (100 рублей, 40 калорий)
+            </label>
+            <label>
+                <input type="radio" name="size" data-cost="50" data-cal="20"> Малый (50 рублей, 20 калорий)
+            </label>
+        </fieldset>
+        <fieldset>
+            <label>
+                Выберите начинку бургера:
+                <br>
+                <br>
+                <input type="radio" name="inner" value="cheese" data-cost="10" data-cal="20"> Сыр (10 рублей, 20 калорий)
+            </label>
+            <label>
+                <input type="radio" name="inner" value="salad" data-cost="20" data-cal="5"> Салат (20 рублей, 5 калорий)
+            </label>
+            <label>
+                <input type="radio" name="inner" value="potato" data-cost="15" data-cal="10"> Картофель (15 рублей, 10 калорий)
+            </label>
+        </fieldset>
+        <fieldset>
+            <label>
+                Выберите доп. опцию:
+                <br>
+                <br>
+                <input type="checkbox" name="extra" value="topping" data-cost="15" data-cal="0"> Посыпать приправой (15 рублей, 0 калорий)
+            </label>
+            <label>
+                <input type="checkbox" name="extra" value="mayo" data-cost="20" data-cal="5"> Полить майонезом (20 рублей, 5 калорий)
+            </label>
+        </fieldset>
+        <input id="clearBtn" type="reset" value="Очистить настройки">
+        <button id="okBtn">Собрать бургер</button>
+    </form>
+
+    <div>Итоговая стоимость: <span class="totalCost">0</span></div>
+    <div>Количество калорий: <span class="totalCal">0</span></div>
+
+    <script>
+        let form = document.querySelector('#uForm')
+        let btn = document.querySelector('#okBtn')
+        let clearBtn = document.querySelector('#clearBtn')
+        let price = document.getElementsByClassName('totalCost');
+        let calories = document.getElementsByClassName('totalCal');
+
+        btn.addEventListener('click', countBurger)
+        clearBtn.addEventListener('click', enableCount)
+
+        function countBurger() {
+            let newBurger = new Burger('size', 'inner', 'extra')
+            btn.disabled = true;
+        }
+
+        function enableCount () {
+            btn.disabled = false;
+            price[0].innerHTML = 0;
+            calories[0].innerHTML = 0;
+        }
+
+        class Burger {
+            constructor(size, inner, extra) {
+                this.Size = this.getInner(size)
+                this.Inner = this.getInner(inner)
+                this.Extra = this.getExtra(extra)
+            }
+
+            getInner(attrName) {
+                let obj = document.querySelector(`input[name=${attrName}]:checked`)
+                calories[0].innerHTML = +obj.dataset['cal'] + parseInt(calories[0].innerHTML)
+                price[0].innerHTML = +obj.dataset['cost'] + parseInt(price[0].innerHTML)
+            }
+
+            getExtra(attrName) {
+                let objArr = [...document.querySelectorAll(`input[name=${attrName}]:checked`)]
+                let arr = []
+                objArr.forEach(el => {
+                    arr.push(el.value)
+                })
+                for(let i = 0; i <=objArr.length-1; i++) {
+                calories[0].innerHTML = +objArr[i].dataset['cal'] + parseInt(calories[0].innerHTML)
+                price[0].innerHTML = +objArr[i].dataset['cost'] + parseInt(price[0].innerHTML)
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
