@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.form {
+  width: 400px;
+  border: 2px solid #807a7a;
+  padding: 30px;
+  margin: 20px auto;
+}
+
+label,
+input {
+  display: block;
+}
+
+label {
+  padding-bottom: 6px;
+  font-size: 20px;
+}
+
+input {
+  margin-bottom: 16px;
+  font-size: 18px;
+  padding: 3px 10px;
+}
+
+h1 {
+  margin-bottom: 16px;
+}
+
+.send {
+  margin-top: 25px;
+}
+
+.error {
+  border-color: red;
+}
+
+.errorMsg {
+  color: red;
+  margin-bottom: 3px;
+}
+/*# sourceMappingURL=style.css.map */

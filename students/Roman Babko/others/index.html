@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Car {
+            constructor(marka, model, country) {
+                this.marka = marka
+                this.model = false;
+            }
+            turnOn = () => {
+                console.log(`${this.marka} ${this.model} from ${this.country} turns on engine`)
+                
+            } 
+            becomeToyota(){
+                if (!this.model) {
+            console.log(this.marka + ' is now toyota')
+            this.model = true
+        } else {
+            console.log(this.marka + ' is already toyota')
+        }
+            }
+        }
+
+        
+
+        let toyotaCorolla = new Car('toyota', 'corolla', 'japan')
+        let mercedesEclass = new Car('mercedes', 'e-class', 'germany')
+
+    </script>
+    
+</body>
+</html>

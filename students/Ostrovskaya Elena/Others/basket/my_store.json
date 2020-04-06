@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "product_name": "Смартфон Nokia 7.2 Charco",
+      "price": 15990,
+      "img": "img/nokia.jpg"
+    },
+    {
+        "id": 2,
+        "product_name": "Смартфон Samsung Galaxy S10+ 128Gb",
+        "price": 54990,
+        "img": "img/samsung.jpg"
+      },
+      {
+        "id": 3,
+        "product_name": "Смартфон Apple iPhone 11 64GB Black",
+        "price": 59990,
+        "img": "img/apple.jpg"
+      },
+      {
+        "id": 4,
+        "product_name": "Смартфон Huawei P30 Pro Breathing Crystal",
+        "price": 44990,
+        "img": "img/huawei.jpg"
+      },
+      {
+        "id": 5,
+        "product_name": "Смартфон Xiaomi Mi Note 10 128GB Midnight Black",
+        "price": 29990,
+        "img": "img/xiaomi.jpg"
+      },
+      {
+        "id": 6,
+        "product_name": "Смартфон Honor 20 Pro 256Gb Phantom Blue",
+        "price": 26990,
+        "img": "img/honor.jpg"
+      }
+  ]

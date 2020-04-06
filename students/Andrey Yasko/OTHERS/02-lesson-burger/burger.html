@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    form {
+      width: 767px
+    }
+
+    label {
+     // display: block;
+      margin-bottom: 20px;
+    }
+  </style>
+  <script src="js/form.js"></script>
+  <script src="js/burger.js"></script>
+</head>
+
+<body>
+<div class="">Миксуй Твой Бургер:</div>
+<form action="#" id="uForm">
+  <fieldset>
+    <label>
+      Выбери свой размер:
+      <br>
+      <br>
+      <input type="radio" name="size" value="big" data-cost="100" data-cal="40" checked> BIG (100 р./40 калл.)
+    </label>
+    <label>
+      <input type="radio" name="size" value="small" data-cost="50" data-cal="20"> mini (50 р./20 калл.)
+    </label>
+  </fieldset>
+  <fieldset>
+    <label>
+      Выбери свою начинку:
+      <br>
+      <br>
+      <input type="radio" name="inner" value="cheese" data-cost="10" data-cal="20" checked> Сыр с дырками (10 р./20 калл.)
+    </label>
+    <label>
+      <input type="radio" name="inner" value="salad" data-cost="20" data-cal="5"> Салат зеленый (20 р./5 калл.)
+    </label>
+    <label>
+      <input type="radio" name="inner" value="potato" data-cost="15" data-cal="10"> Крошка-Картошка (15 р./10 калл.)
+    </label>
+  </fieldset>
+  <fieldset>
+    <label>
+      +Топинг?
+      <br>
+      <br>
+      <input type="checkbox" name="extra" value="topping" data-cost="15" data-cal="0"> приправа (15 р./0 калл.)
+    </label>
+    <label>
+      <input type="checkbox" name="extra" value="mayo" data-cost="20" data-cal="5"> майонез (20 р./5 калл.)
+    </label>
+  </fieldset>
+  <input id="clearBtn" type="reset" value="Сброс настроек">
+  <button id="okBtn">Отправить на сборку</button>
+</form>
+
+<div>Итоговая стоимость: <span class="totalCost">0</span></div>
+<div>Количество калорий: <span class="totalCal">0</span></div>
+
+<script>
+  let form = document.querySelector('#uForm')
+  let btn = document.querySelector('#okBtn')
+  let clearBtn = document.querySelector('#clearBtn')
+  let price = document.getElementsByClassName('totalCost');
+  let calories = document.getElementsByClassName('totalCal');
+
+  btn.addEventListener('click', countBurger)
+  clearBtn.addEventListener('click', enableCount)
+
+  function countBurger() {
+    let myBurger = new BestBurger(getPropsInForm("#uForm"));
+    alert(`
+Стоимость бургера: ${myBurger.Cost}
+Калорийность бургера: ${myBurger.Calories}
+`);
+
+    let newBurger = new Burger('size', 'inner', 'extra')
+    btn.disabled = true;
+  }
+
+  function enableCount() {
+    btn.disabled = false;
+    price[0].innerHTML = 0;
+    calories[0].innerHTML = 0;
+  }
+
+  class Burger {
+    constructor(size, inner, extra) {
+      this.Size = this.getInner(size)
+      this.Inner = this.getInner(inner)
+      this.Extra = this.getExtra(extra)
+    }
+
+    getInner(attrName) {
+      let obj = document.querySelector(`input[name=${attrName}]:checked`)
+      calories[0].innerHTML = +obj.dataset['cal'] + parseInt(calories[0].innerHTML)
+      price[0].innerHTML = +obj.dataset['cost'] + parseInt(price[0].innerHTML)
+    }
+
+    getExtra(attrName) {
+      let objArr = [...document.querySelectorAll(`input[name=${attrName}]:checked`)]
+      let arr = []
+      objArr.forEach(el => { arr.push(el.value) } )
+      for (let i = 0; i <= objArr.length - 1; i++) {
+        calories[0].innerHTML = +objArr[i].dataset['cal'] + parseInt(calories[0].innerHTML)
+        price[0].innerHTML = +objArr[i].dataset['cost'] + parseInt(price[0].innerHTML)
+      }
+    }
+  }
+</script>
+</body>
+
+</html>

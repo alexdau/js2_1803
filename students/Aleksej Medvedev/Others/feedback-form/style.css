@@ -1,0 +1,44 @@
+    form{
+        width: 400px;
+        background-color: #ccc;
+        margin: auto;
+        padding: 10px;
+        border: 1px solid #000000;
+        border-radius: 10px;
+    }
+
+    input{
+        height: 30px;
+        width: calc(100% - 20px);
+        border-radius: 5px;
+        border: 1px solid #4c4c4c;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    button{
+        height: 30px;
+        width: 200px;
+        border: 0;
+        border-radius: 5px;
+        color: #fff;
+        background-color: green;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .center{
+        display: flex;
+        justify-content: center;
+    }
+
+    .error{
+        border: 1px solid red;
+    }
+
+    .good{
+        border: 1px solid green;
+    }

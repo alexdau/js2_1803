@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>burgers</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container center">
+        <div class="burger">
+        <h2>Выберите бургер</h2>
+        <div class="choose-burger">
+            <div class="small" data-price="50" data-calories="20">
+                <img src="https://media-cdn.tripadvisor.com/media/photo-s/0f/96/d4/8c/meet-the-zealot-two-cheeseburg.jpg" alt="" class="burger-img">
+                <p class="burger-description">Маленький бургер</p>
+            </div>
+            <div class="big" data-price="100" data-calories="40">
+                <img src="https://media-cdn.tripadvisor.com/media/photo-s/10/78/95/02/caption.jpg" alt="" class="burger-img">
+                <p class="burger-description">Большой бургер</p>
+            </div>
+        </div>
+        <div class="container-stuff">
+            <div class="choose-stuff">
+                <h2>Какую начинку хотите?</h2>
+                <select class="select-stuff">
+                    <option id="Сыр" value="Сыр" data-price="10" data-calories="20">Сыр</option>
+                    <option id="Салат" value="Салат" data-price="20" data-calories="5">Салат</option>
+                    <option id="Картофель" value="Картофель" data-price="15" data-calories="10">Картофель</option>
+                </select>
+            </div>
+
+            <div class="additionally">
+            <h2>Дополнительно</h2>
+                <p><input class="condiment" type="checkbox" name="a" value="condiment" data-price="15" data-calories="0">Посыпать приправой</p>
+                <p><input class="mayonnaise" type="checkbox" name="b" value="mayonnaise" data-price="20" data-calories="5">Добавить майонез</p>
+            </div>
+    </div>
+        <div class="container-cart">
+            <div class="cart">
+                <p class="size">Размер: <span class="size-u"></span></p>
+                <p class="stuff">Начинка: <span class="stuff-u"></span></p>
+                <p class="bonus">Дополнительно:<span class="condiment-u"></span>  <span class="mayonnaise-u"></span></p>
+                <hr>
+                <p class="price">Цена: <span class="price-u"></span></p>
+                <p class="energy">Энергетическая ценность: <span class="energy-u"></span></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="js/index.js"></script>
+</body>
+</html>

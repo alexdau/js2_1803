@@ -1,5 +1,29 @@
 
-var goodsController = (function() {
+var apiController = (function() {
+    
+    const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/';
+
+    return {
+        makeGETRequest: function (url) {
+            return new Promise((resolve, reject) => {
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET', API_URL + url, true);
+                xhr.onload = () => {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        resolve(xhr.response);
+                    } else {
+                        reject(xhr.statusText);
+                    }
+                };
+                xhr.onerror = () => reject(xhr.statusText);
+                xhr.send();
+            });
+        },
+    }
+})();
+
+
+var goodsController = (function(apiCtrl) {
     class GoodsItem {
         constructor(id, title, price) {
             this.id = id;
@@ -27,6 +51,7 @@ var goodsController = (function() {
     class GoodsList {
         constructor() {
             this.goods = [];
+            this.filteredGoods = [];
         }
         fetchGoods() {
             this.goods = [
@@ -36,13 +61,42 @@ var goodsController = (function() {
                 {id: 4, title: 'Product-4', price: 500},
             ]
         }
+        fetchGoodsAPI() {
+            let goodsList = this;
+            apiCtrl.makeGETRequest('catalogData.json')
+                .then(data => {
+                    data = JSON.parse(data);
+                    data.forEach(function(item, index) {
+                        let good_item = {
+                            id: item.id_product,
+                            title: item.product_name,
+                            price: item.price
+                        }
+                        goodsList.goods.push(good_item);  
+                        goodsList.filteredGoods.push(good_item);
+                        // console.log(goodsList.goods[index]);  
+                    });
+                })
+                .then(() => goodsList.render())
+                .catch(error => {
+                    console.log(`Get an error (goods): ${error}`);
+
+                });
+        }
         render() {
             let listHtml = '';
-            this.goods.forEach(good => {
+            this.filteredGoods.forEach(good => {
                 const goodItem = new GoodsItem(good.id, good.title, good.price);
                 listHtml += goodItem.render();
             });
-            document.querySelector('#catalog').insertAdjacentHTML('beforeend', listHtml);
+            // document.querySelector('#catalog').insertAdjacentHTML('beforeend', listHtml);
+            document.querySelector('#catalog').innerHTML = listHtml;
+        }
+        filterGoods(value) {
+            const regexp = new RegExp(value, 'i');
+            this.filteredGoods = this.goods.filter(good => regexp.test(good.title));
+            this.render();
+            console.log(this);
         }
         getGoodById(id) {
             for (let i=0; i < this.goods.length; i++) {
@@ -54,16 +108,17 @@ var goodsController = (function() {
         }
     }
     var goodsList = new GoodsList();
-    goodsList.fetchGoods();
+    // goodsList.fetchGoods();
+    goodsList.fetchGoodsAPI();
 
     return {
         getGoodsList: function() {
             return goodsList;
         }
     };
-})();
+})(apiController);
 
-var cartController = (function() {
+var cartController = (function(apiCtrl) {
     class CartItem {
         constructor(product_id, product_name, price, quantity) {
             this.product_id = product_id;
@@ -78,7 +133,7 @@ var cartController = (function() {
                     <th scope="row">${row_num}</th>
                     <td class="">${this.product_name}</td>
                     <td class="d-flex">
-                      <input type="number" class="form-control col-5" 
+                      <input type="number" class="form-control col-5 cart-row-quantity" 
                             data-target="${this.product_id}" value="${this.quantity}">
                       <button type="button" class="btn btn-outline-dark ml-2 btn-cart-item-del" 
                             data-target="${this.product_id}">Delete</button>
@@ -91,6 +146,8 @@ var cartController = (function() {
     class Cart {
         constructor() {
             this.items = [];
+            this.amount = 0;
+            this.countGoods = 0;
         }
         getCartItems() {
             return this.items; 
@@ -135,6 +192,29 @@ var cartController = (function() {
             }
             return totalCost;
         }
+        fetchCartAPI() {
+            let cart = this;
+            apiCtrl.makeGETRequest('getBasket.json')
+                .then(data => {
+                    data = JSON.parse(data);
+                    cart.amount = data.amount;
+                    cart.countGoods = data.countGoods;
+                    data.contents.forEach(function(item, index) {
+                        cart.items.push({
+                            product_id: item.id_product,
+                            product_name: item.product_name,
+                            price: item.price,
+                            quantity: item.quantity
+                        });  
+                        // console.log(cart.items[index]);  
+                    });
+                })
+                .then(() => cart.render())
+                .catch(error => {
+                    console.log(`Get an error (cart): ${error}`);
+
+                });
+        }
         render() {
             var $cart_info = document.getElementById("cart-info");
             if (this.items.length > 0) {
@@ -161,7 +241,8 @@ var cartController = (function() {
             }
         }
     }
-    var cart = new Cart();   
+    var cart = new Cart();
+    cart.fetchCartAPI();   
 
     return {
         getCart: function() {
@@ -169,13 +250,15 @@ var cartController = (function() {
         }
     };
 
-})();
+})(apiController);
 
 // APP MAIN CONTROLLER
 var controller = (function(goodsCtrl, cartCtrl) {
     var setupEventListeners = function() {
         // Bay button:
         document.querySelector('#catalog').addEventListener('click', ctrlAddItemToCart);
+        document.querySelector('#cartTable').addEventListener('click', handleCartRowElementsClick);
+        document.querySelector('#header-search').addEventListener('submit', handleHeaderSearch); 
     };
 
     var ctrlAddItemToCart = function(event) {
@@ -183,47 +266,41 @@ var controller = (function(goodsCtrl, cartCtrl) {
             cart = cartCtrl.getCart();
             cart.addItemById(parseInt(event.target.id));
             cart.render();
-            setupCartRowsEventListeners();
-            console.log(cart.items);
+            // console.log(cart.items);
 
         }
     };
 
-    var setupCartRowsEventListeners = function() {
-        var $deleteCartRowButtons = document.querySelectorAll("#cartTable .btn-cart-item-del");
-        //console.log($deleteCartRowButtons);
-        for (var i = 0; i < $deleteCartRowButtons.length; i++) {
-            $deleteCartRowButtons[i].addEventListener('click', handleDeleteCartRowButtonClick);
-        }
-        var $inputCartQuantityFields = document.querySelectorAll("#cartTable input");
-        for (var i = 0; i < $inputCartQuantityFields.length; i++) {
-            $inputCartQuantityFields[i].addEventListener('change', handleInputCartQuantityFieldChange);
-        }
-    };
+    var handleCartRowElementsClick = function(event) {
+        // console.log(event.target);
+        if (event.target.type == 'number' && event.target.classList.contains('cart-row-quantity')) {
+            console.log(event.target);
+            let product_id = parseInt(event.target.dataset.target);
+            let productCartNewQuantity = parseInt(event.target.value);
+            let cart = cartCtrl.getCart();
+            let productCartIndex = cart.getIndexOfItemId(product_id);
+            cart.items[productCartIndex].quantity = productCartNewQuantity;
+            cart.render();
 
-    var handleDeleteCartRowButtonClick = function(event) {
-        var product_id = parseInt(event.target.dataset.target);
-        var cart = cartCtrl.getCart();
-        cart.deleteItemById(product_id);
-        cart.render();
-        setupCartRowsEventListeners();
+        } else if (event.target.type == 'button' && event.target.classList.contains('btn-cart-item-del')) {
+            console.log(event.target);
+            let product_id = parseInt(event.target.dataset.target);
+            let cart = cartCtrl.getCart();
+            cart.deleteItemById(product_id);
+            cart.render();
+        }
     }
 
-    function handleInputCartQuantityFieldChange(event) {
-        //console.log(event.target.dataset.target);
-        //console.log(event.target.value);
-        var product_id = parseInt(event.target.dataset.target);
-        var productCartNewQuantity = parseInt(event.target.value);
-        var cart = cartCtrl.getCart();
-        var productCartIndex = cart.getIndexOfItemId(product_id);
-        cart.items[productCartIndex].quantity = productCartNewQuantity;
-        cart.render();
-        setupCartRowsEventListeners();
+    var handleHeaderSearch = function(event) {
+        let searchValue = document.getElementById('header-search-input').value;
+        goodsCtrl.getGoodsList().filterGoods(searchValue);
+        console.log(searchValue);
     }
 
     return {
         init: function() {
-            goodsCtrl.getGoodsList().render();
+            goodsCtrl.getGoodsList();
+            cartCtrl.getCart();
             setupEventListeners();
         }
     }

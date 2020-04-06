@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/normalize.css">
     <title>Document</title>
 </head>
 <body>
+    <div id="app">
     <header>
         <div class="logo">E-shop</div>
         <div class="cart">
@@ -18,8 +19,8 @@
                     <i class="fas fa-search"></i>
                 </button>
             </form>
-            <button class="btn-cart">Cart</button>
-            <div class="cart-block ">
+            <button class="btn-cart" @click="show = !show">Cart</button>
+            <div class="cart-block " v-show="show">
                 <div class="d-flex">
                     <strong class="d-block">Всего товаров</strong> <div id="quantity"></div>
                 </div>
@@ -35,10 +36,27 @@
         </div>
     </header>
     <main>
-        <div class="products"></div>
+        <div class="products">
+            <div class="product-item" v-for="item of items" :key="item.id_product">
+                <img src="https://placehold.it/300x200" v-bind:alt="item.product_name">
+                <div class="desc">
+                    <h1>{{item.product_name}}</h1>
+                    <p>{{item.price}}</p>
+                    <button 
+                    class="buy-btn" 
+                    name="buy-btn"
+                    v-bind:data-name="item.product_name"
+                    v-bind:data-price="item.price"
+                    v-bind:data-id="item.id_product"
+                    >Купить</button>
+                </div>
+            </div>
+        </div>
     </main>
+    </div>
     
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

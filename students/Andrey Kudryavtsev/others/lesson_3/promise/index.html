@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="goods-list"></div>
+    <script>
+        const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses'
+
+        function makeGETRequest(url) {
+            return new Promise((resolve) => {
+                let xhr = new XMLHttpRequest()
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        resolve(xhr.responseText)
+                    }
+                }
+                xhr.open('GET', url, true)
+                xhr.send()
+            })
+        }
+
+        class GoodsList {
+            // ...
+            fetchGoods() {
+                return makeGETRequest(`${API_URL}/catalogData.json`)
+                    .then(goods => {
+                        this.goods = JSON.parse(goods)
+                    })
+            }
+
+            render() {
+                let listHtml = ''
+                this.goods.forEach(good => {
+                    const goodItem = new GoodsItem(good.product_name, good.price)
+                    listHtml += goodItem.render()
+                })
+                document.querySelector('.goods-list').innerHTML = listHtml
+            }
+        }
+
+        class GoodsItem {
+            constructor(product_name, price) {
+                this.product_name = product_name
+                this.price = price
+            }
+            render() {
+                return `<div class="goods-item"><h3> ${this.product_name} </h3><p> ${this.price} </p></div>`
+            }
+        }
+
+        const list = new GoodsList()
+        list.fetchGoods()
+            .then(() => list.render())
+    </script>
+</body>
+
+</html>

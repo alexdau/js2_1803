@@ -49,21 +49,21 @@
          let str = ''
          this.items.forEach(item => {
              str += `
-                <div class="product-item">
-                    <img src="https://placehold.it/300x200" alt="${item.product_name}">
-                    <!--img src="${item.img}" width="300" height="200" alt="${item.product_name}"-->
-                    <div class="desc">
-                        <h1>${item.product_name}</h1>
-                        <p>${item.price}</p>
-                        <button 
-                        class="buy-btn" 
-                        name="buy-btn"
-                        data-name="${item.product_name}"
-                        data-price="${item.price}"
-                        data-id="${item.id_product}"
-                        >Купить</button>
-                    </div>
-                </div>
+<div class="product-item">
+    <img src="https://placehold.it/300x200" alt="${item.product_name}">
+    <!--img src="${item.img}" width="300" height="200" alt="${item.product_name}"-->
+    <div class="desc">
+        <h1>${item.product_name}</h1>
+        <p>${item.price}</p>
+        <button 
+        class="buy-btn" 
+        name="buy-btn"
+        data-name="${item.product_name}"
+        data-price="${item.price}"
+        data-id="${item.id_product}"
+        >Купить</button>
+    </div>
+</div>
             `
          })
          document.querySelector(this.container).innerHTML = str
@@ -159,9 +159,103 @@
  catalog.construct(cart) //тут происходит создание объекта и вся прочая магия
  cart.construct()
 
-
  export default function app() {
      console.log('Jobs done!')
-     //   catalog.construct(cart) //тут происходит создание объекта и вся прочая магия
-     //   cart.construct()
  }
+
+
+
+ // class GoodsItem {
+ //     constructor(product_name, price) {
+ //         this.product_name = product_name;
+ //         this.price = price;
+ //     }
+ //     addToBa
+
+ //     render() {
+ //         return `                <div class="product-item">
+ //         <img src="https://placehold.it/300x200" alt="${this.product_name}">
+ //         <!--img src="${this.img}" width="300" height="200" alt="${this.product_name}"-->
+ //         <div class="desc">
+ //             <h1>${this.product_name}</h1>
+ //             <p>${this.price}</p>
+ //             <button 
+ //             class="buy-btn" 
+ //             name="buy-btn"
+ //             data-name="${this.product_name}"
+ //             data-price="${this.price}"
+ //             data-id="${this.id_product}"
+ //             >Купить</button>
+ //         </div>
+ //     </div>`;
+ //     }
+ // }
+
+
+ // class GoodsList {
+ //     constructor() {
+ //         this.goods = [];
+ //         this._init()
+ //     }
+ //     _init() {
+ //         this.fetchGoods()
+ //         this.render()
+ //     }
+ //     fetchGoods() {
+ //         this.goods = [{
+ //                 product_name: 'Shirt',
+ //                 price: 150
+ //             },
+ //             {
+ //                 product_name: 'Socks',
+ //                 price: 50
+ //             },
+ //             {
+ //                 product_name: 'Jacket',
+ //                 price: 350
+ //             },
+ //             {
+ //                 product_name: 'Shoes',
+ //                 price: 250
+ //             },
+ //         ];
+ //     }
+ //     render() {
+ //         let listHtml = '';
+ //         this.goods.forEach(good => {
+ //             const goodItem = new GoodsItem(good.product_name, good.price);
+ //             listHtml += goodItem.render();
+ //         });
+ //         document.querySelector('.products').innerHTML = listHtml;
+ //     }
+ // }
+
+ // class Cart {
+ //     constructor(container = ".cart-block") {
+ //         this.container = container;
+ //     }
+
+
+
+ // }
+
+ // class ItemCart {
+ //     constructor(container = ".cart-item") {
+ //         this.container = container;
+ //     }
+ //     _render(){
+ //         `<div class="cart-item" data-id="${item.id_product}">
+ //                     <img src="https://placehold.it/100x80" alt="">
+ //                     <div class="product-desc">
+ //                         <p class="product-title">${item.product_name}</p>
+ //                         <p class="product-quantity">${item.quantity}</p>
+ //                         <p class="product-single-price">${item.price}</p>
+ //                     </div>
+ //                     <div class="right-block">
+ //                         <button name="del-btn" class="del-btn" data-id="${item.id_product}">&times;</button>
+ //                     </div>`
+ //     }
+ // }
+
+
+ // const list = new GoodsList();

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form {
+      width: 300px;
+    }
+
+    form {
+      width: 100%;
+    }
+
+    fieldset {
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    input, button, textarea {
+      padding: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    label {
+      box-sizing: border-box;
+      display: block;
+      margin-bottom: 10px;
+      padding: 5px;
+      width: 100%;
+    }
+
+    .warning {
+      outline: 2px solid #ffb4b4;
+      background-color: #ff00000d;
+    }
+
+    .warning > .msg {
+      display: block;
+      color: red;
+      font-size: 75%;
+    }
+
+    .msg {
+      display: none;
+    }
+  </style>
+  <script src="js/form.js">// *********** Alex Khayev code</script>
+  <script src="js/person.js">// *********** Alex Khayev code</script>
+  <script src="js/validator.js">// *********** Alex Khayev code</script>
+</head>
+<body>
+<div class="form">
+  <form id="uForm">
+    <fieldset>
+      <label>Name
+        <input type="text" name="name" placeholder="без пробелов и знаков препинания" autofocus>
+        <span class="msg"></span>
+      </label>
+      <label>Phone
+        <input type="text" name="phone" placeholder="+7(999)999-9999">
+        <span class="msg"></span>
+      </label>
+      <label>e-mail
+        <input type="text" name="email" placeholder="name@domain.zone">
+        <span class="msg"></span>
+      </label>
+      <textarea name="text" cols="30" rows="10"></textarea>
+    </fieldset>
+
+  </form>
+  <button id="okBtn">Отправить</button>
+</div>
+
+
+<script>
+  let btn = document.querySelector('#okBtn')
+  btn.addEventListener('click', addUser)
+
+  function clear() {
+    document.querySelectorAll(".warning").forEach(item => {
+      item.classList.remove("warning");
+    })
+  }
+
+  function addWarning(selector, msg) {
+    let inp = document.querySelector(selector);
+    if (inp) {
+      let parent = inp.closest("label");
+      parent.classList.add("warning");
+      parent.querySelector(".msg").textContent = msg;
+    }
+  }
+
+  function validateAndShowErrors(data) {
+    let valid = new Validator(data);
+    valid.errors.forEach(item => {
+      addWarning(`[name='${item.name}']`, item.msg);
+    });
+    return valid.errors.length === 0;
+  }
+
+  function addUser() {
+    clear();
+    let data = getPropsInForm("#uForm");
+    if (validateAndShowErrors(data)) {
+      let user = new Person(data);
+    }
+
+  }
+</script>
+</body>
+</html>

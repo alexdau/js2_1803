@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+
+    <script src="https://kit.fontawesome.com/99bb243a57.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<section class="content">
+    <form class="form" id="burgers">
+        <fieldset>
+            <legend>Выбор гамбургера</legend>
+            <fieldset>
+                <legend>Некая сеть фастфуда предлагает<br> несколько видов гамбургеров:</legend>
+                <div class="input__box">
+                    <input type="radio" name="size" value="50" data-calories="20">Маленький (50 рублей, 20 калорий).<br>
+                    <input type="radio" name="size" value="100" data-calories="40">Большой (100 рублей, 40 калорий).<br>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Гамбургер может быть с одним<br> из нескольких видов начинок</legend>
+                <div class="input__box">
+                    <input type="radio" name="type" value="10" data-calories="20">С сыром (+10 рублей, +20 калорий).<br>
+                    <input type="radio" name="type" value="20" data-calories="5">С салатом (+20 рублей, +5 калорий).<br>
+                    <input type="radio" name="type" value="15" data-calories="10">С картофелем (+15 рублей, +10 калорий).<br>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Дополнительная опция</legend>
+                <div class="input__box">
+                    <input type="checkbox" name="paper" value="15" data-calories="0">Приправой (+15 рублей, 0 калорий).<br>
+                    <input type="checkbox" name="mayo" value="15" data-calories="5">Майонезом (+20 рублей, +5 калорий).<br>
+                </div>
+            </fieldset>
+            <button class="burgers_button">Собрать бургер</button>
+        </fieldset>
+    </form>
+
+    <section class="result">
+        <div class="price_text">Цена: <span class="price">0</span></div>
+        <div class="price_text">Калории: <span class="calories">0</span></div>
+    </section>
+</section>
+
+<script src="index.js"></script>
+</body>
+</html>

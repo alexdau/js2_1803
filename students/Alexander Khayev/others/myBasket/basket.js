@@ -20,6 +20,18 @@ class Basket {
   }
 
   /**
+   * Удаляет продукт из корзины
+   * @param productId
+   */
+  pop(productId) {
+    if (this.idOfProducts[productId].count > 1) {
+      --this.idOfProducts[productId].count;
+    } else {
+      this.idOfProducts = this.idOfProducts.filter(item => item.key != productId)
+    }
+  }
+
+  /**
    * Проверяем наличие данного товара в корзине
    * @param productId
    * @returns {boolean}
@@ -29,7 +41,7 @@ class Basket {
   }
 
   /**
-   * Обзая сумма корзины
+   * Общая сумма корзины
    * @returns {number}
    */
   getTotalAmount() {

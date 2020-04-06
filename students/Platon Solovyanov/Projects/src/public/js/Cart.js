@@ -1,15 +1,25 @@
-import Common from './Сommon'
+let PRODUCTS_NAMES = ['Processor', 'Display', 'Notebook', 'Mouse', 'Keyboard']
+let PRICES = [100, 120, 1000, 15, 18]
+let IDS = [0, 1, 2, 3, 4]
+let IMGS = ['https://cs8.pikabu.ru/post_img/big/2017/12/25/5/1514188160141511997.jpg',
+    'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/HMUB2?wid=1144&hei=1144&fmt=jpeg&qlt=80&op_usm=0.5,0.5&.v=1563827752399',
+    'https://zeon18.ru/files/item/Xiaomi-Mi-Notebook-Air-4G-Officially-Announced-Weboo-co-2%20(1)_1.jpg',
+    'https://files.sandberg.it/products/images/lg/640-05_lg.jpg',
+    'https://images-na.ssl-images-amazon.com/images/I/81PLqxtrJ3L._SX466_.jpg'
+]
 
-export default class Cart extends Common {
-    constructor() {
-        // this.items = []
-        // this.total = 0
-        // this.sum = 0
-        // this.container = '.cart-block'
-        // this.quantityBlock = document.querySelector('#quantity')
-        // this.priceBlock = document.querySelector('#price')
-        super()
+export default class Cart {
+    constructor(container = '.cart-block', ) {
+        this.container = container;
+        this.items = [];
+        this.total = 0;
+        this.sum = 0;
+        this.quantityBlock = document.querySelector('#quantity');
+        this.priceBlock = document.querySelector('#price');
+        this._init()
     }
+
+
 
     _init() {
         this._handleEvents()
@@ -85,5 +95,4 @@ export default class Cart extends Common {
         this.quantityBlock.innerText = this.total
         this.priceBlock.innerText = this.sum
     }
-
 }

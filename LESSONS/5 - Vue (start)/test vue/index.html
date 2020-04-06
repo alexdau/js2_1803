@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 40%;
+            margin: 0 auto
+        }
+        .post {
+            border-radius: 5px;
+            border: 2px solid grey;
+            padding: 15px;
+            margin-bottom: 10px
+        }
+        .post-footer {
+            text-align: right
+        }
+        .font-it {
+            font-style: italic
+        }
+        .red {
+            color: red
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+        <div class="container">
+            <div class="post" v-for="item of items" :key="item.id">
+                <div class="user">
+                    <strong>{{ item.name }}</strong>
+                </div>
+                <div class="post-body">
+                    <p>{{ item.body }}</p>
+                </div>
+                <div class="post-footer">
+                    <a href="#">{{ item.mail }}</a>
+                </div>
+            </div>
+        </div>
+        <!--div v-show="show">
+            <h1>{{ info }}</h1>
+            <input type="text" v-model.lazy="info">
+        </div>
+        <button @click="show = !show">{{ show ? 'Скрыть' : 'Показать' }} позорище</button-->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hw4</title>
+</head>
+
+<script>
+    "use strict";
+
+    const str =
+        `One:В 'Hi Mary.' Two:В 'Oh, hi.'
+One:В 'How are you doing?'
+Two:В 'I'm doing alright. How about you?'
+One:В 'Not too bad. The weather is great isn't it?'
+Two:В 'Yes. It's absolutely beautiful today.'
+One:В 'I wish it was like this more frequently.'
+Two:В 'Me too.'
+One:В 'So where are you going now?'
+Two:В 'I'm going to meet a friend of mine at the department store.'
+One:В 'Going to do a little shopping?'
+Two:В 'Yeah, I have to buy some presents for my parents.'
+One:В 'What's the occasion?'
+Two:В 'It's their anniversary.'
+One:В 'That's great. Well, you better get going. You don't want to be late.'
+Two:В 'I'll see you next time.'
+One:В 'Sure. Bye.'`
+
+    //console.log(`Original text:\n${str}`)
+
+
+    // ver 1
+    // "Find all single quotes and replace them with double quotes."
+    //
+    //const regexp = /'/g
+    //console.log(`Changed text:\n${str.replace(regexp, '"')}`)
+
+
+    // ver2
+    // "Find all single quotes which have symbols after them and
+    // end with andother single quite not followed by words."
+    // "\w" equals to "[a-zA-Z0-9_]" e.g. all letters, numbers and _
+
+    const regexp = /'(.+?)'(?!\w)/g
+    let str2 = str.replace(regexp, '"$1"')
+    console.log(`Changed text:\n${str2}`)
+</script>
+
+</html>

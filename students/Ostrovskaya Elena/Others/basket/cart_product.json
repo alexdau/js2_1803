@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "product_name": "Смартфон Nokia 7.2 Charco",
+        "price": 15990,
+        "img": "img/nokia.jpg",
+        "count": 2
+    },
+    {
+        "id": 3,
+        "product_name": "Смартфон Apple iPhone 11 64GB Black",
+        "price": 59990,
+        "img": "img/apple.jpg",
+        "count": 1
+    }
+  ]

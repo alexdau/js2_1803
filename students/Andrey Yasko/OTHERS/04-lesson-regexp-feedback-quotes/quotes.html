@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="text">
+				One:Â 'Hi Mary.' Two:Â 'Oh, hi.'<br>
+				One:Â 'How are you doing?'<br>
+				Two:Â 'I'm doing alright. How about you?'<br>
+				One:Â 'Not too bad. The weather is great isn't it?'<br>
+				Two:Â 'Yes. It's absolutely beautiful today.'<br>
+				One:Â 'I wish it was like this more frequently.'<br>
+				Two:Â 'Me too.'<br>
+				One:Â 'So where are you going now?'<br>
+				Two:Â 'I'm going to meet a friend of mine at the department store.'<br>
+				One:Â 'Going to do a little shopping?'<br>
+				Two:Â 'Yeah, I have to buy some presents for my parents.'<br>
+				One:Â 'What's the occasion?'<br>
+				Two:Â 'It's their anniversary.'<br>
+				One:Â 'That's great. Well, you better get going. You don't want to be late.'<br>
+				Two:Â 'I'll see you next time.'<br>
+				One:Â 'Sure. Bye.'</p>
+	<input type="button" value="Заменить одинарные кавычки на двойные">
+    <script>
+            let input = document.querySelector('input');
+            let textEl = document.querySelector('.text');
+            input.addEventListener('click', ()=>{textEl.innerText = textEl.innerText.replace(/\B'(.+?)'\B/g, "\"$1\"");} )
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <form action="#" method="post" class="some" id="myform">
+      <div>
+        <label>
+          Ваше имя <br />
+          <input type="text" name="name" id="name" />
+        </label>
+      </div>
+      <div>
+        <label>
+          Телефон <br />
+          <input type="tel" name="phone" id="phone" />
+        </label>
+      </div>
+      <div>
+        <label>
+          Email <br />
+          <input type="email" name="email" id="email" />
+        </label>
+      </div>
+      <div>
+        <label>
+          Сообщение <br />
+          <input type="text"/>
+        </label>
+      </div>
+      <button id="val-btn">Отправить</button>
+    </form>
+
+    <script>
+      window.onload = () => {
+        document.querySelector("#myform").addEventListener("submit", e => {
+          let valid = new Validator("myform");
+          console.log(valid);
+          if (!valid.valid) {
+            e.preventDefault();
+          }
+        });
+      };
+    </script>
+    <script src="./app.js"></script>
+  </body>
+</html>

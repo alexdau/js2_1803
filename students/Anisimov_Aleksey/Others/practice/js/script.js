@@ -8,7 +8,28 @@ let basketTable = document.querySelector('.basket__table');
 let basketEmpty = document.querySelector('.basket__empty');
 let basketImg = document.querySelector('.basket__img');
 let counter = document.querySelector('.item__counter');
+let API_URL = 'http://localhost:63342/js2_1803/students/Anisimov_Aleksey/Others/practice'
+//let API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses'
 
+class Requests {
+    get(url, callback) {
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                callback(xhr.responseText);
+            }
+        };
+        xhr.open('GET', url, false);
+        xhr.send();
+    }
+    parse(data) {
+        data = JSON.parse(data);
+        return data;
+    }
+}
+
+let request = new Requests();
+let goods = {};
 class DemoDB {
     constructor(quantity) {
         let array = [];
@@ -22,9 +43,23 @@ class DemoDB {
         }
         return array;
     }
+    makeGETRequest(url, callback) {
+        let xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                callback(xhr.responseText);
+            }
+        }
+
+        xhr.open('GET', url, true);
+        xhr.send();
+    }
 }
 
-const goods = new DemoDB(9);
+request.get(`${API_URL}/catalogData.json`, (result) => {
+    goods = JSON.parse(result);
+});
 
 class Item {
     buyBttnCl = '.addToCart';
@@ -166,3 +201,6 @@ let product = new Item();
 let cart = new Cart();
 product.init();
 //console.log(cart.current);
+
+
+

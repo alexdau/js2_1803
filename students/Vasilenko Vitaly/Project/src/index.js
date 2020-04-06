@@ -1,3 +1,3 @@
-import app from './js/main.js'
+// import app from './js/main.js'
 
-app()
+// app()

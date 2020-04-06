@@ -1,0 +1,146 @@
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+.center
+  padding: 0px calc(50% - 450px)
+
+.header
+  position: relative
+  min-height: 80px
+  background-color: #ccc
+  display: flex
+  align-items: center
+  justify-content: flex-end
+
+.search
+  margin-right: 20px
+
+.product
+  margin-top: 30px
+  display: flex
+  flex-flow: row wrap
+  justify-content: space-between
+  &__desc
+    text-align: center
+  &__item
+    width: 300px
+    padding: 5px
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+  &__img
+    width: 95%
+    &_small
+      width: 30px
+
+.basket
+  z-index: 999
+  position: relative
+  &__delete
+    width: 30%
+    &:hover
+      cursor: pointer
+
+  &__empty
+    right: 0
+    width: 150px
+    position: absolute
+    background-color: #fff
+    padding: 10px
+    font-size: 18px
+    border: 1px solid #cccccc
+    box-shadow: 0 0 3px 1px #000
+    border-radius: 10px
+    text-align: center
+  &__img
+    width: 40px
+
+  &__table
+    display: table
+    border: 1px solid #000000
+    width: 300px
+    background-color: #cccccc
+    position: absolute
+    right: 0
+    padding: 10px
+    border-radius: 10px
+    &_th
+      font-weight: bold
+    &_tr
+      display: table-row
+    &_td, &_th
+      display: table-cell
+      outline: 1px solid #000000
+      padding: 5px
+      vertical-align: middle
+      text-align: center
+
+.hidden
+  display: none
+
+.cart
+  position: relative
+  &__counter
+    position: absolute
+    width: 20px
+    height: 20px
+    top: -10px
+    right: -10px
+    border-radius: 20px
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: red
+    padding: 1px
+  &__item
+    padding: 5px
+    display: flex
+    justify-content: space-between
+  &__button
+    appearance: 
+    padding: 5px 10px
+    background-color: #fff
+    border-radius: 10px
+    border: 1px solid #ebebeb
+    &:hover
+      cursor: pointer
+  &__action
+    display: flex
+    justify-content: center
+    align-items: center
+    font-size: 32px
+    font-weight: bold
+    appearance: none
+    border: 0
+    background-color: Transparent
+    background-repeat: no-repeat
+    cursor: pointer
+  &__block
+    position: absolute
+    right: 0
+    top: 130%
+    width: 300px
+    border: 1px solid #cccccc
+    box-shadow: 0 0 3px 1px #000
+    border-radius: 10px
+    padding: 10px
+    background-color: #fff
+  &__empty
+    right: 0
+    width: 150px
+    position: absolute
+    background-color: #fff
+    padding: 10px
+    font-size: 18px
+    border: 1px solid #cccccc
+    box-shadow: 0 0 3px 1px #000
+    border-radius: 10px
+    text-align: center
+  &__hr
+    margin: 5px 0
+  &__p
+    font-size: 18px
+    font-weight: bold

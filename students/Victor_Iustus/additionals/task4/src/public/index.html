@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Регулярные выражения</title>
+</head>
+<body>
+    <main>
+        <header class="mb-3">
+            <div class="container">
+                <h1>Регулярные выражения</h1>
+            </div>
+        </header>
+        <div class="container mb-3">
+            <h2>Задание №1</h2>
+            <div class="row">
+                <div id="task1" class="col-6">
+                    One:В 'Hi Mary.' Two:В 'Oh, hi.'
+                    One:В 'How are you doing?'
+                    Two:В 'I'm doing alright. How about you?'
+                    One:В 'Not too bad. The weather is great isn't it?'
+                    Two:В 'Yes. It's absolutely beautiful today.'
+                    One:В 'I wish it was like this more frequently.'
+                    Two:В 'Me too.'
+                    One:В 'So where are you going now?'
+                    Two:В 'I'm going to meet a friend of mine at the department store.'
+                    One:В 'Going to do a little shopping?'
+                    Two:В 'Yeah, I have to buy some presents for my parents.'
+                    One:В 'What's the occasion?'
+                    Two:В 'It's their anniversary.'
+                    One:В 'That's great. Well, you better get going. You don't want to be late.'
+                    Two:В 'I'll see you next time.'
+                    One:В 'Sure. Bye.'
+                </div>
+                <div id="task1-result" class="col-6"></div>
+            </div>
+            <hr>
+        </div>
+        <div class="container mb-3">
+            <h2>Задание №2</h2>
+            <div class="row">
+                <div id="task2" class="col-6">
+                    One:В 'Hi Mary.' Two:В 'Oh, hi.'
+                    One:В 'How are you doing?'
+                    Two:В 'I'm doing alright. How about you?'
+                    One:В 'Not too bad. The weather is great isn't it?'
+                    Two:В 'Yes. It's absolutely beautiful today.'
+                    One:В 'I wish it was like this more frequently.'
+                    Two:В 'Me too.'
+                    One:В 'So where are you going now?'
+                    Two:В 'I'm going to meet a friend of mine at the department store.'
+                    One:В 'Going to do a little shopping?'
+                    Two:В 'Yeah, I have to buy some presents for my parents.'
+                    One:В 'What's the occasion?'
+                    Two:В 'It's their anniversary.'
+                    One:В 'That's great. Well, you better get going. You don't want to be late.'
+                    Two:В 'I'll see you next time.'
+                    One:В 'Sure. Bye.'
+                </div>
+                <div id="task2-result" class="col-6"></div>
+            </div>
+            <hr>
+        </div>
+        <div class="container mb-5">
+            <h2>Задание №3*</h2>
+            <div class="row">
+                <div class="col-12">
+                    <div>Создать форму обратной связи с полями: Имя, Телефон, E-mail, текст, кнопка Отправить. При нажатии на кнопку Отправить произвести валидацию полей следующим образом:
+                        <ul>
+                            <li>Имя содержит только буквы.</li>
+                            <li>Телефон имеет вид +7(000)000-0000.</li>
+                            <li>E-mail имеет вид mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru.</li>
+                            <li>Текст произвольный.</li>
+                            <li>Если одно из полей не прошло валидацию, необходимо выделить это поле красной рамкой и сообщить пользователю об ошибке.</li>
+                        </ul>
+                    </div>
+                    <form id="task3">
+                        <div class="form-group">
+                            <label for="name">Имя</label>
+                            <input type="text" class="form-control" placeholder="Только буквы" id="name" name="name">
+                            <span class="invalid-feedback d-none">Имя должно содержать только буквы</span>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="phone">Телефон</label>
+                                    <input type="text" class="form-control" placeholder="+7(000)000-0000" id="phone" name="phone">
+                                    <span class="invalid-feedback d-none">Телефон не имеет вид +7(000)000-0000</span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="email">E-mail</label>
+                                    <input type="text" class="form-control" placeholder="E-mail" id="email" name="email">
+                                    <span class="invalid-feedback d-none">E-mail не корректный</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textarea">Текст</label>
+                            <textarea type="text" class="form-control" placeholder="Текст произвольный" id="textarea"name="textarea"></textarea>
+                            <span class="invalid-feedback d-none">Введите произвольный текст</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>

@@ -1,0 +1,80 @@
+body {
+    background-image: url(https://www.thedailymeal.com/sites/default/files/2017/06/12/0000000BurgerHEROIMAGEshutterstock_1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height:100vh;
+}
+
+
+
+.container{
+    background: rgba(255, 228, 181, 0.4);
+    margin: 0 auto;
+    width: 1250px;
+    text-align: center;
+
+}
+
+.burger {
+
+    border: 2px solid black;
+    padding-bottom: 50px;
+
+}
+
+.choose-burger{
+    display: flex;
+    justify-content: space-around;
+
+}
+.burger-img {
+    width: 300px;
+}
+
+.container-stuff {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+
+.select-stuff {
+    width: 80%;
+    height: 40px;
+    border: 1px solid black;
+    background-color: cornsilk;
+    font-size: 20px;
+}
+
+.small {
+    transition: all 0.2s;
+}
+
+.small:hover {
+    transform: scale(1.06);
+}
+
+.big {
+    transition: all 0.2s;
+}
+
+.big:hover {
+    transform: scale(1.06);
+}
+
+.additionally {
+    font-size: 20px;
+}
+
+.container-cart {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cart {
+    width: 300px;
+    background-color: cornsilk;
+    margin-right: 50px;
+    text-align: right;
+    border: 2px solid black;
+}

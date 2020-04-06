@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eShop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<div id="app">
+<body>
+    <header>
+        <button class="cart-button" type="button">Корзина</button>
+        <button class="search-button" type="button" id="search-button" v-on:click="filterGoods(searchLine)">Искать</button>
+        <input type="text" name="goods-search" id="goods-search" v-model="searchLine" class="goods-search">
+        
+    </header>
+   
+    <main>
+        <div id="goods-list" class="goods-list">
+            <div class="goods-item" v-for = "good in items" :key="good.id_product">
+                <h3>{{good.product_name}}</h3>
+                <p>{{good.price}}</p>
+            </div> 
+        </div>
+    </main>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
